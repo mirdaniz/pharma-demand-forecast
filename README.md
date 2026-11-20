@@ -118,7 +118,7 @@ python -m pip install -r requirements.txt
 ```
 
 1. Unduh dataset dari Kaggle dan taruh `salesdaily.csv` di `data/`.
-2. Buat database dan isi tabelnya:
+2. Buat database dan isi tabelnya (jalankan dari folder utama repo; loader mengosongkan `sales_daily` lalu memuat ulang datanya dari `data/salesdaily.csv`):
 
    ```bash
    createdb pharma_forecast
@@ -126,14 +126,14 @@ python -m pip install -r requirements.txt
    python -m src.load_to_db
    ```
 
-3. Siapkan model. File `models/model_n02be.joblib` dibuat oleh sel terakhir di `notebooks/eda_dan_modeling.ipynb`.
+3. Model sudah ada di repo (`models/model_n02be.joblib`). Untuk membuatnya ulang, jalankan notebook `notebooks/eda_dan_modeling.ipynb` sampai sel terakhir.
 4. Jalankan API:
 
    ```bash
    python -m uvicorn src.api:app --reload
    ```
 
-   Dokumentasi interaktif ada di `http://127.0.0.1:8000/docs`. Koneksi database bisa diatur lewat variabel `DATABASE_URL` (bawaan: `postgresql+psycopg:///pharma_forecast`).
+   Dokumentasi interaktif ada di `http://127.0.0.1:8000/docs`. Koneksi database API bisa diatur lewat variabel `DATABASE_URL` (bawaan: `postgresql+psycopg:///pharma_forecast`). Skrip loader selalu memakai database lokal `pharma_forecast`.
 
 Menjalankan test:
 
